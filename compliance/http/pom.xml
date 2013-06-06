@@ -1,0 +1,164 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.openrdf.sesame</groupId>
+		<artifactId>sesame-compliance</artifactId>
+		<version>2.6.10</version>
+	</parent>
+
+	<artifactId>sesame-http-compliance</artifactId>
+	<packaging>war</packaging>
+
+	<name>OpenRDF HTTP server compliance tests</name>
+	<description>Tests for the HTTP server.</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-http-protocol</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-queryparser-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-queryresultio-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-queryresultio-binary</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-queryresultio-sparqljson</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-queryresultio-sparqlxml</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-rio-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-rio-rdfxml</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-http-server</artifactId>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-http-protocol</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-repository-http</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-repository-manager</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-config</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty</artifactId>
+			<version>6.1.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jsp-2.1</artifactId>
+			<version>6.1.9</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webappDirectory>${project.build.directory}/openrdf-sesame</webappDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+				<executions>
+					<execution>
+						<id>surefire-it</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skipTests>false</skipTests>
+							<excludes>
+								<exclude>**/TestServer.java</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<scm>
+		<connection>scm:svn:https://repo.aduna-software.org/svn/org.openrdf/sesame/tags/2.6.10/http/server</connection>
+		<developerConnection>scm:svn:https://repo.aduna-software.org/svn/org.openrdf/sesame/tags/2.6.10/http/server</developerConnection>
+		<url>http://repo.aduna-software.org/websvn/listing.php?repname=aduna&amp;path=/org.openrdf/sesame/tags/2.6.10/http/server?repname=aduna&amp;path=/org.openrdf/sesame/branches/2.6/http/server</url>
+	</scm>
+
+</project>

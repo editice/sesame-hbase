@@ -1,0 +1,173 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>org.openrdf.sesame</groupId>
+		<artifactId>sesame-compliance</artifactId>
+		<version>2.6.10</version>
+	</parent>
+
+	<artifactId>sesame-store-compliance</artifactId>
+	<packaging>war</packaging>
+
+	<name>OpenRDF SAIL and Repository compliance test</name>
+	<description>Tests for the core SAILs and Repositories</description>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-store-testsuite</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-serql-testsuite</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-sparql-testsuite</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-repository-http</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-repository-sail</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-repository-sparql</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-sail-memory</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-sail-nativerdf</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-sail-rdbms</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-http-server</artifactId>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>ch.qos.logback</groupId>
+			<artifactId>logback-classic</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-http-protocol</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openrdf.sesame</groupId>
+			<artifactId>sesame-repository-manager</artifactId>
+		</dependency>
+
+		<!--<dependency>
+			<groupId>info.aduna.appbase</groupId>
+			<artifactId>aduna-appbase-logging-file</artifactId>
+		</dependency>-->
+
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jetty</artifactId>
+			<version>6.1.9</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mortbay.jetty</groupId>
+			<artifactId>jsp-2.1</artifactId>
+			<version>6.1.9</version>
+			<scope>runtime</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>jcl-over-slf4j</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>log4j-over-slf4j</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webappDirectory>${project.build.directory}/openrdf-sesame</webappDirectory>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<skipTests>true</skipTests>
+				</configuration>
+				<executions>
+					<execution>
+						<id>surefire-it</id>
+						<phase>integration-test</phase>
+						<goals>
+							<goal>test</goal>
+						</goals>
+						<configuration>
+							<skipTests>false</skipTests>
+							<forkMode>always</forkMode>
+							<argLine>-Xmx512M -XX:MaxPermSize=256M</argLine>
+							<excludes>
+								<exclude>**/DataStorePerfTest.java</exclude>
+							</excludes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<scm>
+		<connection>scm:svn:https://repo.aduna-software.org/svn/org.openrdf/sesame/tags/2.6.10/compliance/store</connection>
+		<developerConnection>scm:svn:https://repo.aduna-software.org/svn/org.openrdf/sesame/tags/2.6.10/compliance/store</developerConnection>
+		<url>http://repo.aduna-software.org/websvn/listing.php?repname=aduna&amp;path=/org.openrdf/sesame/tags/2.6.10/compliance/store?repname=aduna&amp;path=/org.openrdf/sesame/branches/2.6/compliance/store</url>
+	</scm>
+
+</project>
